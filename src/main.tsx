@@ -1,10 +1,19 @@
+import 'reflect-metadata';
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { Container } from 'inversify';
+import { Provider } from 'inversify-react';
 import './index.css'
 import App from './App.tsx'
+import { MessageService } from './MessageService.ts';
+
+const iocContainer = new Container({skipBaseClassChecks: true});
+iocContainer.bind(MessageService).toSelf().inSingletonScope();
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+    <StrictMode>
+        <Provider container={iocContainer}>
+            <App/>
+        </Provider>
+    </StrictMode>,
 )
