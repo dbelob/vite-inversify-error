@@ -6,7 +6,7 @@ export default function FuctionComponent() {
 
     return (
         <>
-            Fuction component: {messageService.getMessage()}
+            Function component: {messageService.getMessage()}
         </>
     );
 }
